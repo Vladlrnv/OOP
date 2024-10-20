@@ -27,5 +27,11 @@ class Category:
         """ Декоратор для чтения приватного атрибута __products"""
         new_str = ""
         for product in self.__products:
-            new_str += f"{product.name}, {product.price} руб. Остаток {product.quantity} шт.\n"
+            new_str += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
         return new_str
+
+    def __str__(self):
+        all_prod = 0
+        for num in self.__products:
+            all_prod += num.quantity
+        return f"{self.name}, количество продуктов: {all_prod} шт.\n"

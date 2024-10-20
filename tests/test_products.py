@@ -26,3 +26,11 @@ def test_price(prod_1: Product) -> None:
     assert prod_1.price == 100000
     prod_1.price = -100
     assert prod_1.price == 100000
+
+
+def test_str(prod_1: Product) -> None:
+    assert str(prod_1) == "Samsung Galaxy C23 Ultra, 180000.0 руб. Остаток 5 шт.\n"
+
+
+def test_add(prod_1: Product, prod_2: Product) -> None:
+    assert prod_1 + prod_2 == 2580000
