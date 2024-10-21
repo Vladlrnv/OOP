@@ -8,7 +8,7 @@ class Product:
     price: float
     quantity: int
 
-    def __init__(self, name, description, price, quantity) -> None:
+    def __init__(self, name: str, description: str, price: float, quantity: int) -> None:
         """ Функция инициализации """
         self.name = name
         self.description = description
@@ -34,8 +34,11 @@ class Product:
         else:
             print("Цена не должна быть нулевая или отрицательная")
 
-    def __str__(self):
+    def __str__(self) -> Any:
         return f"{self.name}, {self.price} руб. Остаток {self.quantity} шт.\n"
 
-    def __add__(self, other):
-        return self.quantity * self.__price + other.quantity * other.__price
+    def __add__(self, other: Any) -> Any:
+        if type(other) is Product:
+            return self.quantity * self.__price + other.quantity * other.__price
+        else:
+            raise TypeError

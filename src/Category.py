@@ -1,5 +1,7 @@
 from typing import Any
 
+from src.Products import Product
+
 
 class Category:
     """ Класс определяющий категории товаров """
@@ -9,7 +11,7 @@ class Category:
     category_count = 0
     product_count = 0
 
-    def __init__(self, name, description, products=None) -> None:
+    def __init__(self, name: str, description: str, products: Any = None) -> None:
         """ Функция инициализации """
         self.name = name
         self.description = description
@@ -19,8 +21,11 @@ class Category:
 
     def add_product(self, product: Any) -> None:
         """ Функция добавляет новый продукт """
-        self.__products.append(product)
-        Category.product_count += 1
+        if isinstance(product, Product):
+            self.__products.append(product)
+            Category.product_count += 1
+        else:
+            raise TypeError
 
     @property
     def products(self) -> str:
@@ -30,7 +35,7 @@ class Category:
             new_str += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
         return new_str
 
-    def __str__(self):
+    def __str__(self) -> Any:
         all_prod = 0
         for num in self.__products:
             all_prod += num.quantity
